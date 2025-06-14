@@ -20,6 +20,7 @@ class SwigConan(ConanFile):
     package_type = "static-library"
     settings = "os", "arch", "compiler", "build_type"
     exports_sources = (
+        "CCache",
         "cmake",
         "Lib",
         "Source",
@@ -145,15 +146,7 @@ class SwigConan(ConanFile):
             deps = AutotoolsDeps(self)
             deps.generate()
 
-    def _patch_sources(self):
-        # Rely on AutotoolsDeps instead of pcre2-config
-        # https://github.com/swig/swig/blob/v4.1.1/configure.ac#L70-L92
-        # https://github.com/swig/swig/blob/v4.0.2/configure.ac#L65-L86
-        replace_in_file(self, os.path.join(self.source_folder, "configure.ac"),
-                        'AS_IF([test "x$with_pcre" != xno],', 'AS_IF([false],')
-
     def build(self):
-        self._patch_sources()
         with chdir(self, self.source_folder):
             autotools = Autotools(self)
             self.run("./autogen.sh")

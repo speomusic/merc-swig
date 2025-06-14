@@ -81,7 +81,7 @@ if test x"${with_pcre}" = xyes ; then
   fi
   AC_MSG_RESULT([$local_pcre_config])
 fi
-AS_IF([test "x$with_pcre" != xno],
+AS_IF([false],
   [AX_PATH_GENERIC([pcre2],
     [], dnl Minimal version of PCRE we need -- accept any
     [], dnl custom sed script for version parsing is not needed
