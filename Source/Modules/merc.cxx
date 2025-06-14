@@ -57,19 +57,10 @@ public:
 
         return SWIG_OK;
     }
-
-    int functionWrapper(Node *n) override
+    int classHandler(Node* n) override
     {
-        /* Get some useful attributes of this function */
         String   *name   = Getattr(n, "sym:name");
-        SwigType *type   = Getattr(n, "type");
-        ParmList *parms  = Getattr(n, "parms");
-        String   *parmstr= ParmList_str_defaultargs(parms); // to string
-        String   *func   = SwigType_str(type, NewStringf("%s(%s)", name, parmstr));
-        String   *action = Getattr(n, "wrap:action");
-
-        Printf(f_wrappers, "functionWrapper   : %s\n", func);
-        Printf(f_wrappers, "           action : %s\n", action);
+        Printf(f_wrappers, "class: %s\n", name);
         return SWIG_OK;
     }
 private:
