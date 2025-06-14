@@ -20,12 +20,13 @@ class SwigConan(ConanFile):
     package_type = "static-library"
     settings = "os", "arch", "compiler", "build_type"
     exports_sources = (
-        "CCache",
-        "cmake",
-        "Lib",
-        "Source",
-        "Tools",
-        "Win",
+        "CCache/*",
+        "cmake/*",
+        "Examples/*",
+        "Lib/*",
+        "Source/*",
+        "Tools/*",
+        "Win/*",
         "autogen.sh",
         "CMakeLists.txt",
         "configure.ac",
