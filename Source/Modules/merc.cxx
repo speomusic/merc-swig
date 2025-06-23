@@ -57,9 +57,15 @@ public:
 
         return SWIG_OK;
     }
+
+    int functionHandler(Node* n) override
+    {
+        return SWIG_OK;
+    }
+
     int classHandler(Node* n) override
     {
-        String   *name   = Getattr(n, "sym:name");
+        String* name{ Getattr(n, "sym:name") };
         Printf(f_wrappers, "class: %s\n", name);
         return SWIG_OK;
     }
